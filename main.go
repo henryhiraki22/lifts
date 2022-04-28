@@ -18,11 +18,11 @@ func main() {
 
 	router := mux.NewRouter().StrictSlash(true)
 	initaliseHandlers(router)
-	log.Fatal(http.ListenAndServe(":8090", router))
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
 func initaliseHandlers(router *mux.Router) {
-	router.HandleFunc("/", controller.HealthCheck).Methods("GET")
+	router.HandleFunc("/api", controller.HealthCheck).Methods("GET")
 	router.HandleFunc("/api/createlifta", controller.CreateLiftA).Methods("POST")
 	router.HandleFunc("/api/getlifta", controller.ListTrainingA).Methods("GET")
 	router.HandleFunc("/api/createliftb", controller.CreateLiftB).Methods("POST")
