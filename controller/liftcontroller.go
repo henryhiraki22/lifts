@@ -15,6 +15,11 @@ func ListTrainingA(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(liftsA)
 }
 
+func HealthCheck(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("OK"))
+}
+
 func CreateLiftA(w http.ResponseWriter, r *http.Request) {
 	var liftA entity.LiftA
 	reqBody, _ := ioutil.ReadAll(r.Body)

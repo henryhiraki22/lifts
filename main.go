@@ -22,6 +22,7 @@ func main() {
 }
 
 func initaliseHandlers(router *mux.Router) {
+	router.HandleFunc("/", controller.HealthCheck).Methods("GET")
 	router.HandleFunc("/api/createlifta", controller.CreateLiftA).Methods("POST")
 	router.HandleFunc("/api/getlifta", controller.ListTrainingA).Methods("GET")
 	router.HandleFunc("/api/createliftb", controller.CreateLiftB).Methods("POST")
