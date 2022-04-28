@@ -32,7 +32,7 @@ func initDB() {
 	config :=
 		database.Config{
 			Host:         os.Getenv("MYSQL_HOST"),
-			UserName:     os.Getenv("MySQL_USER"),
+			UserName:     os.Getenv("MYSQL_USER"),
 			Password:     os.Getenv("MYSQL_PASSWORD"),
 			DatabaseName: os.Getenv("MYSQL_DATABASE"),
 		}

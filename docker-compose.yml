@@ -1,6 +1,17 @@
-
-version: '3'
 services:
+  db:
+    image: mysql/mysql-server:8.0.23
+    ports: 
+      - 3306:3306
+    environment: 
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: lifts
+      MYSQL_USER: lift
+      MYSQL_PASSWORD: lift1234@
+    expose:
+      - '3306'
+
+
   app:
     container_name: api-lifts
     build: .
@@ -9,20 +20,9 @@ services:
     restart: on-failure
     environment:
       MYSQL_DATABASE: lifts
-      MYSQL_HOST: localhost:3306 
-      MYSQL_USER: docker
-      MYSQL_PASSWORD: password
+      MYSQL_HOST: db:3306
+      MYSQL_USER: lift
+      MYSQL_PASSWORD: lift1234@
     depends_on:
-      - mysql          
+      - db          
 
-
-  mysql:
-    image: mysql:5.7
-    container_name: mysql
-    ports: 
-      - 3306:3306
-    environment: 
-      MYSQL_DATABASE: lifts
-      MYSQL_USER: docker
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: password
