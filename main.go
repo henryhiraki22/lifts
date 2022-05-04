@@ -17,8 +17,23 @@ func main() {
 	log.Println("Starting the HTTP server on port 8090")
 
 	router := mux.NewRouter().StrictSlash(true)
+	router.Use(accessControlMiddleware)
 	initaliseHandlers(router)
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8090", router))
+}
+
+func accessControlMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "localhost:8080")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS,PUT")
+		w.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type")
+
+		if r.Method == "OPTIONS" {
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
 }
 
 func initaliseHandlers(router *mux.Router) {
