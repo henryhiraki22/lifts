@@ -19,7 +19,7 @@ func main() {
 	router.Use(accessControlMiddleware)
 	initaliseHandlers(router)
 	log.Fatal(http.ListenAndServe(":8090", router))
-	log.Println("Success!")
+	log.Println("Success!!")
 }
 
 func accessControlMiddleware(next http.Handler) http.Handler {
