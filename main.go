@@ -15,11 +15,11 @@ import (
 func main() {
 	initDB()
 	log.Println("Starting the HTTP server on port 8090")
-
 	router := mux.NewRouter().StrictSlash(true)
 	router.Use(accessControlMiddleware)
 	initaliseHandlers(router)
 	log.Fatal(http.ListenAndServe(":8090", router))
+	log.Println("Success")
 }
 
 func accessControlMiddleware(next http.Handler) http.Handler {
