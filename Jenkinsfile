@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('Docker Compose up') {
             steps {
-                sh 'sudo su docker-compose up -d' 
+                sh 'docker-compose up -d' 
             }
         }
         stage('Docker Compose logs') {
             steps {
-                sh 'sudo su docker-compose logs -f'
+                sh 'docker-compose logs -f'
             }
         }
         stage('Simple validation'){
