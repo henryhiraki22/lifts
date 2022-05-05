@@ -6,7 +6,7 @@ pipeline {
                 sh 'docker-compose up -d' 
             }
         }
-        stage('Docker Compose logs') {
+        stage('Docker Compose log') {
             steps {
                 sh 'docker-compose logs -f'
             }
