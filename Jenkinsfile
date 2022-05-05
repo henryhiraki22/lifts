@@ -28,5 +28,6 @@ pipeline {
     stage('Simple validation'){
         steps {
             sh 'curl -s localhost:8090/api | grep "Jenkins"'
+        }
     }
 }
