@@ -3,27 +3,27 @@ pipeline {
     stages {
         stage('Docker stop') {
             steps {
-                sh 'docker stop $(docker ps -a -q)'
+                sh 'sudo docker stop $(docker ps -a -q)'
             }
         }
         stage('Docker rm') {
             steps {
-                sh 'docker rm $(docker ps -a -q)'
+                sh 'sudo docker rm $(docker ps -a -q)'
             }
         }
         stage('Docker rmi') {
             steps {
-                sh 'docker rmi $(docker images -q)'
+                sh 'sudo docker rmi $(docker images -q)'
             }
         }
         stage('Docker Compose up') {
             steps {
-                sh 'docker-compose up -d' 
+                sh 'sudo docker-compose up -d' 
             }
         }
         stage('Docker Compose logs') {
             steps {
-                sh 'docker-compose logs -f'
+                sh 'sudo docker-compose logs -f'
             }
         }
         stage('Simple validation'){
